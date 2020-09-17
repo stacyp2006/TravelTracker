@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset='UTF-8'>
+    <title>Wander</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
+    <h1>Wander</h1>
+    <main>
+      <sidebar>
+        <h2>Welcome, User</h2>
+        <h3>Current Location: Home</h3>
+        <section>
+          <h3>Pending Wanders</h3>
+        </section>
+        <section>
+          <h3>Total Spent this Year</h3>
+        </section>
+      </sidebar>
+      <section>
+        <nav>
+          <input aria-label="choose destination" type="text" name="destination" value="" placeholder="Choose a Destination">
+          <input aria-label="start date" type="text" name="date" value="" placeholder="Start Date">
+          <input aria-label="length of trip" type="text" name="duration" value="" placeholder="Length of Trip">
+          <input aria-label="number of travelers" type="text" name="party" value="" placeholder="# of Travelers">
+          <button aria-label="estimate cost" type="button" name="cost">Estimate Cost</button>
+          <button aria-label="submit" type="button" name="submit">Submit</button>
+        </nav>
+      </section>
+      <section>
+        <h3>Welcome to Tokyo!</h3>
+      </section>
+      <section>
+        <h3>Past Wanders</h3>
+      </section>
+      <section>
+        <h3>Upcoming Wanders</h3>
+      </section>
+    </main>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>
