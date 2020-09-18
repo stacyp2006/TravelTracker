@@ -1,5 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
+<<<<<<< HEAD
 
 import Traveler from '../src/traveler.js';
 
@@ -71,3 +72,5 @@ describe('Traveler', () => {
     expect(traveler1.id).to.equal(8);
   })
 })
+=======
+>>>>>>> 631fd01eddb3564775bed87ff8eb5ae5ffaabbaf
