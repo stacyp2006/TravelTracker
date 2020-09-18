@@ -1,4 +1,3 @@
-{
 "trips": [
 {
 "id": 1,
@@ -2001,4 +2000,3 @@
 "suggestedActivities": []
 }
 ]
-}

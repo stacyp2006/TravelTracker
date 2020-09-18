@@ -1,4 +1,3 @@
-{
 "travelers": [
 {
 "id": 1,
@@ -251,4 +250,3 @@
 "travelerType": "foodie"
 }
 ]
-}

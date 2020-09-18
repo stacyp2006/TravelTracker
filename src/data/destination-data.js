@@ -1,4 +1,3 @@
-{
 "destinations": [
 {
 "id": 1,
@@ -400,4 +399,3 @@
 "alt": "person sitting on brown rock in front of small body of water"
 }
 ]
-}
