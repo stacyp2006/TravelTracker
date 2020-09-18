@@ -1,6 +1,4 @@
-import chai from 'chai';
-const expect = chai.expect;
-<<<<<<< HEAD
+const { expect } = require("chai");
 
 import Traveler from '../src/traveler.js';
 
@@ -68,9 +66,9 @@ describe('Traveler', () => {
     traveler1 = new Traveler(traveler, trips);
   })
 
-  it('should have an id', () => {
+  it('should take in data from travelerData', () => {
     expect(traveler1.id).to.equal(8);
+    expect(traveler1.name).to.equal('Carlin O/Reilly');
+    expect(traveler1.travelerType).to.equal('history buff');
   })
 })
-=======
->>>>>>> 631fd01eddb3564775bed87ff8eb5ae5ffaabbaf
