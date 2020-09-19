@@ -16,12 +16,15 @@ class Traveler {
     })
     this.allTrips = travelerTrips;
   }
-  // addPastTrips(tripData) {
-  //   let oldTrips = tripData.filter(trip => {
-  //     return Date.parse(trip.date) <= Date.now()
-  //   })
-  //   this.pastTrips.push(oldTrips);
-  // }
+
+  addPastTrips() {
+    let oldTrips = this.allTrips.filter(trip => {
+      return Date.parse(trip.date) <= Date.now()
+    })
+    this.pastTrips = oldTrips;
+  }
+
+  
 }
 
 

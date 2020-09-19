@@ -47,59 +47,11 @@ describe('Traveler', () => {
     expect(traveler1.allTrips.length).to.equal(7)
   })
 
-  // it('should add trips to the pastTrips array after they occur', () => {
-  //   traveler1.addPastTrips(tripData);
-  //   expect(traveler1.pastTrips).to.deep.equal([{
-  //     id: 28,
-  //     userID: 48,
-  //     destinationID: 31,
-  //     travelers: 3,
-  //     date: "2020/02/03",
-  //     duration: 14,
-  //     status: "approved",
-  //     suggestedActivities: []
-  //   },
-  //   {
-  //     id: 122,
-  //     userID: 48,
-  //     destinationID: 17,
-  //     travelers: 2,
-  //     date: "2020/09/06",
-  //     duration: 5,
-  //     status: "approved",
-  //     suggestedActivities: []
-  //   },
-  //   {
-  //     id: 133,
-  //     userID: 48,
-  //     destinationID: 46,
-  //     travelers: 5,
-  //     date: "2019/09/15",
-  //     duration: 10,
-  //     status: "approved",
-  //     suggestedActivities: []
-  //   },
-  //   {
-  //     id: 156,
-  //     userID: 48,
-  //     destinationID: 40,
-  //     travelers: 1,
-  //     date: "2019/08/02",
-  //     duration: 7,
-  //     status: "approved",
-  //     suggestedActivities: []
-  //   },
-  //   {
-  //     id: 162,
-  //     userID: 48,
-  //     destinationID: 25,
-  //     travelers: 2,
-  //     date: "2020/06/22",
-  //     duration: 17,
-  //     status: "approved",
-  //     suggestedActivities: []
-  //   }, ])
-  //})
+  it.only('should return past trips for a user', () => {
+    traveler1.findAllTrips(tripData)
+    traveler1.addPastTrips()
+    expect(traveler1.pastTrips.length).to.equal(6)
+  })
 
 
 })
