@@ -1,4 +1,4 @@
-"trips": [
+let tripData = [
 {
 "id": 1,
 "userID": 44,
@@ -1999,4 +1999,6 @@
 "status": "approved",
 "suggestedActivities": []
 }
-]
+];
+
+export default tripData;
