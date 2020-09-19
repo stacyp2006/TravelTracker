@@ -15,7 +15,6 @@ class Traveler {
       return this.id === trip.userID
     })
     this.allTrips = travelerTrips;
-    console.log(this.allTrips);
   }
 
   addPastTrips() {
@@ -25,6 +24,12 @@ class Traveler {
     this.pastTrips = oldTrips;
   }
 
+  addUpcomingTrips() {
+    let upcomingTrips = this.allTrips.filter(trip => {
+      return trip.status !== 'pending' && Date.parse(trip.date) >= Date.now()
+    })
+    this.upcomingTrips = upcomingTrips;
+  }
 
 }
 

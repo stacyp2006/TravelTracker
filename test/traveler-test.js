@@ -56,8 +56,10 @@ describe('Traveler', () => {
   it('should return upcoming trips for a user', () => {
     traveler1.findAllTrips(tripData)
     traveler1.addUpcomingTrips()
-    expect(traveler1.pastTrips.length)
+    expect(traveler1.upcomingTrips.length).to.equal(1);
   })
+
+  
 
 
 })
