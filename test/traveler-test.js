@@ -47,10 +47,16 @@ describe('Traveler', () => {
     expect(traveler1.allTrips.length).to.equal(7)
   })
 
-  it.only('should return past trips for a user', () => {
+  it('should return past trips for a user', () => {
     traveler1.findAllTrips(tripData)
     traveler1.addPastTrips()
-    expect(traveler1.pastTrips.length).to.equal(6)
+    expect(traveler1.pastTrips.length).to.equal(5)
+  })
+
+  it('should return upcoming trips for a user', () => {
+    traveler1.findAllTrips(tripData)
+    traveler1.addUpcomingTrips()
+    expect(traveler1.pastTrips.length)
   })
 
 
