@@ -4,12 +4,12 @@ import Traveler from '../src/traveler.js';
 import travelerData from '../src/data/traveler-data.js';
 import tripData from '../src/data/trip-data.js';
 
-
-
 describe('Traveler', () => {
   let traveler1;
+  let traveler2;
   beforeEach(() => {
     traveler1 = new Traveler(travelerData[47], tripData);
+    traveler2 = new Traveler(travelerData[43], tripData)
   })
 
   it('should be a function', () => {
@@ -65,5 +65,20 @@ describe('Traveler', () => {
     expect(traveler1.pendingTrips.length).to.equal(1);
   })
 
-  
+  it('should return a users current trip', () => {
+    traveler2.findAllTrips(tripData)
+    traveler2.findCurrentTrip()
+    expect(traveler2.currentTrip).to.deep.equal(
+      {
+        id: 68,
+        userID: 44,
+        destinationID: 41,
+        travelers: 6,
+        date: "2020/09/19",
+        duration: 14,
+        status: "approved",
+        suggestedActivities: []
+      }
+    );
+  })
 })

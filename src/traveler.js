@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 class Traveler {
   constructor(travelerData, tripData) {
     this.id = travelerData.id;
@@ -15,6 +17,7 @@ class Traveler {
       return this.id === trip.userID
     })
     this.allTrips = travelerTrips;
+    // console.log(this.allTrips);
   }
 
   findPastTrips() {
@@ -38,8 +41,13 @@ class Traveler {
     this.pendingTrips = pendingTrips;
   }
 
-
-
+  findCurrentTrip() {
+    let today = moment()
+    let currentTrip = this.allTrips.find(trip => {
+      return trip.status === 'approved' && moment(new Date(trip.date)).isBefore(today) && moment(new Date(trip.date)).add(trip.duration, 'day').isAfter(today)
+    })
+    this.currentTrip = currentTrip;
+  }
 }
 
 
