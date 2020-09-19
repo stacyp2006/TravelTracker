@@ -17,19 +17,28 @@ class Traveler {
     this.allTrips = travelerTrips;
   }
 
-  addPastTrips() {
+  findPastTrips() {
     let oldTrips = this.allTrips.filter(trip => {
       return trip.status !== 'pending' && Date.parse(trip.date) <= Date.now()
     })
     this.pastTrips = oldTrips;
   }
 
-  addUpcomingTrips() {
+  findUpcomingTrips() {
     let upcomingTrips = this.allTrips.filter(trip => {
       return trip.status !== 'pending' && Date.parse(trip.date) >= Date.now()
     })
     this.upcomingTrips = upcomingTrips;
   }
+
+  findPendingTrips() {
+    let pendingTrips = this.allTrips.filter(trip => {
+      return trip.status === 'pending'
+    })
+    this.pendingTrips = pendingTrips;
+  }
+
+
 
 }
 
