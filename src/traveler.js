@@ -57,7 +57,7 @@ class Traveler {
       let tripCost;
       destinations.forEach(destination => {
         if (trip.destinationID === destination.id) {
-          tripCost = (trip.travelers * ((trip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson))
+          tripCost = (1.1 * (trip.travelers * ((trip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson)));
         }
       })
       total += tripCost

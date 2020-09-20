@@ -86,6 +86,6 @@ describe('Traveler', () => {
   it('should calculate total money spent on travel this year', () => {
     traveler1.findAllTrips(tripData);
     traveler1.calculateTravelBudget(destinations);
-    expect(traveler1.calculateTravelBudget(destinations)).to.equal(19230);
+    expect(traveler1.calculateTravelBudget(destinations)).to.equal(21153);
   })
 })
