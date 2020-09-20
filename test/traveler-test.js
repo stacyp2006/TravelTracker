@@ -3,12 +3,13 @@ import { expect } from "chai";
 import Traveler from '../src/traveler.js';
 import travelerData from '../src/data/traveler-data.js';
 import tripData from '../src/data/trip-data.js';
+import destinations from '../src/data/destination-data.js';
 
 describe('Traveler', () => {
   let traveler1;
   let traveler2;
   beforeEach(() => {
-    traveler1 = new Traveler(travelerData[47], tripData);
+    traveler1 = new Traveler(travelerData[47], tripData, destinations);
     traveler2 = new Traveler(travelerData[43], tripData)
   })
 
@@ -80,5 +81,11 @@ describe('Traveler', () => {
         suggestedActivities: []
       }
     );
+  })
+
+  it('should calculate total money spent on travel this year', () => {
+    traveler1.findAllTrips(tripData);
+    traveler1.calculateTravelBudget(destinations);
+    expect(traveler1.calculateTravelBudget(destinations)).to.equal(19230);
   })
 })

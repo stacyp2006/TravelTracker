@@ -1,4 +1,4 @@
-"destinations": [
+let destinations = [
 {
 "id": 1,
 "destination": "Lima, Peru",
@@ -398,4 +398,6 @@
 "image": "https://images.unsplash.com/photo-1506982724953-b1fbe939e1e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
 "alt": "person sitting on brown rock in front of small body of water"
 }
-]
+];
+
+export default destinations;

@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 class Traveler {
-  constructor(travelerData, tripData) {
+  constructor(travelerData, tripData, destinations) {
     this.id = travelerData.id;
     this.name = travelerData.name;
     this.travelerType = travelerData.travelerType;
@@ -17,7 +17,6 @@ class Traveler {
       return this.id === trip.userID
     })
     this.allTrips = travelerTrips;
-    // console.log(this.allTrips);
   }
 
   findPastTrips() {
@@ -48,6 +47,25 @@ class Traveler {
     })
     this.currentTrip = currentTrip;
   }
+
+  calculateTravelBudget(destinations) {
+    let year = moment('2020-01-01');
+    let yearTrips = this.allTrips.filter(trip => {
+      return moment(new Date(trip.date)).isAfter(year);
+    })
+    let totalCost = yearTrips.reduce((total, trip) => {
+      let tripCost;
+      destinations.forEach(destination => {
+        if (trip.destinationID === destination.id) {
+          tripCost = (trip.travelers * ((trip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson))
+        }
+      })
+      total += tripCost
+      return total;
+    }, 0)
+    return totalCost
+  }
+
 }
 
 
