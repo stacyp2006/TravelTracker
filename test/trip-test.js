@@ -28,5 +28,4 @@ describe('Trip', () => {
     trip1.calculateTripCost(destinations);
     expect(trip1.calculateTripCost(destinations)).to.equal(5819);
   })
-
 })
