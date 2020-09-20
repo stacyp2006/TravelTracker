@@ -10,7 +10,16 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
   }
-  
+
+  calculateTripCost(destinations) {
+    let tripCost = destinations.reduce((cost, destination) => {
+      if (this.destinationID === destination.id) {
+        cost = (1.1 * (this.travelers * ((this.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson)));
+      }
+      return cost
+    }, 0)
+    return parseFloat(tripCost.toFixed(0));
+  }
 }
 
 export default Trip

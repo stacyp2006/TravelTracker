@@ -24,4 +24,9 @@ describe('Trip', () => {
     expect(trip1.status).to.equal("approved");
   })
 
+  it('should calculate the cost of a trip', () => {
+    trip1.calculateTripCost(destinations);
+    expect(trip1.calculateTripCost(destinations)).to.equal(5819);
+  })
+
 })
