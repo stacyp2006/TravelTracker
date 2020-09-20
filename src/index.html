@@ -9,33 +9,33 @@
   <body>
     <h1>Wander</h1>
     <main>
-      <sidebar>
+      <sidebar class="user-display">
         <h2>Welcome, User</h2>
         <h3>Current Location: Home</h3>
-        <section>
+        <section class="pending-trips">
           <h3>Pending Wanders</h3>
         </section>
-        <section>
+        <section class="travel-budget">
           <h3>Total Spent this Year</h3>
         </section>
       </sidebar>
       <section>
-        <nav>
-          <input aria-label="choose destination" type="text" name="destination" value="" placeholder="Choose a Destination">
-          <input aria-label="start date" type="text" name="date" value="" placeholder="Start Date">
-          <input aria-label="length of trip" type="text" name="duration" value="" placeholder="Length of Trip">
-          <input aria-label="number of travelers" type="text" name="party" value="" placeholder="# of Travelers">
-          <button aria-label="estimate cost" type="button" name="cost">Estimate Cost</button>
-          <button aria-label="submit" type="button" name="submit">Submit</button>
+        <nav class="book-trip-bar">
+          <input class="destination-menu" aria-label="choose destination" type="text" name="destination" value="" placeholder="Choose a Destination">
+          <input class="start-date-box" aria-label="start date" type="text" name="date" value="" placeholder="Start Date">
+          <input class="duration-box" aria-label="length of trip" type="text" name="duration" value="" placeholder="Length of Trip">
+          <input class="traveler-count" aria-label="number of travelers" type="text" name="party" value="" placeholder="# of Travelers">
+          <button class="estimate-cost" aria-label="estimate cost" type="button" name="cost">Estimate Cost</button>
+          <button class="submit-btn" aria-label="submit" type="button" name="submit">Submit</button>
         </nav>
       </section>
-      <section>
+      <section class="current-trip">
         <h3>Welcome to Tokyo!</h3>
       </section>
-      <section>
+      <section class="past-trips">
         <h3>Past Wanders</h3>
       </section>
-      <section>
+      <section class="upcoming-trips">
         <h3>Upcoming Wanders</h3>
       </section>
     </main>
