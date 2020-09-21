@@ -29,8 +29,9 @@ let domUpdates = {
   updateDisplay: () => {
     domUpdates.greetUser();
     domUpdates.getDestinations();
+    domUpdates.getTotalSpent();
   },
-  
+
   getTraveler: () => {
     domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
   },
@@ -47,6 +48,13 @@ let domUpdates = {
         destinationMenu.insertAdjacentHTML('beforeend', `<option value="${destination.id}">${destination.destination}</option>`)
       })
     }
+  },
+
+  getTotalSpent: () => {
+    domUpdates.traveler.findAllTrips(domUpdates.trips);
+    const travelTotal = document.querySelector('.travel-total');
+    const userTotal = domUpdates.traveler.calculateTravelBudget(domUpdates.destinations)
+    travelTotal.innerText = `$ ${userTotal}`
   }
 
 }
