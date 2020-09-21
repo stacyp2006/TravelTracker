@@ -32,6 +32,7 @@ let domUpdates = {
     domUpdates.getTotalSpent();
     domUpdates.displayPendingTrips();
     domUpdates.displayCurrentTrip();
+    domUpdates.displayPastTrips();
   },
 
   getTraveler: () => {
@@ -85,6 +86,23 @@ let domUpdates = {
       let alt = domUpdates.destinations[trip.destinationID - 1].alt;
       welcome.innerText = `Welcome to ${name}`;
       currentTrip.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+    }
+  },
+
+  displayPastTrips: () => {
+    const pastTrips = document.querySelector('.past-trips');
+    const pastLabel = document.querySelector('.past-label');
+    domUpdates.traveler.findPastTrips();
+    if (domUpdates.traveler.pastTrips.length === 0) {
+      pastLabel.innerText = `Past Wanders <br> No past wanders to display`;
+    } else {
+      domUpdates.traveler.pastTrips.forEach(trip => {
+        // let trip = new Trip(domUpdates.traveler.currentTrip)
+        let name = domUpdates.destinations[trip.destinationID - 1].destination;
+        let image = domUpdates.destinations[trip.destinationID - 1].image;
+        let alt = domUpdates.destinations[trip.destinationID - 1].alt;
+        pastTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+      })
     }
   }
 
