@@ -21,6 +21,7 @@ let domUpdates = {
         domUpdates.trips = responses[1].trips;
         domUpdates.destinations = responses[2].destinations;
         domUpdates.getTraveler();
+        domUpdates.greetUser();
         domUpdates.getDestinations();
         console.log(domUpdates.traveler);
       })
@@ -35,10 +36,10 @@ let domUpdates = {
   //   domUpdates.getDestinations();
   // },
 
-  // greetUser: () => {
-  //   const welcomeMessage = document.querySelector('.greeting');
-  //   welcomeMessage.innerText = `Welcome ${domUpdates.traveler.name}!`;
-  // },
+  greetUser: () => {
+    const welcomeMessage = document.querySelector('.greeting');
+    welcomeMessage.innerText = `Welcome, ${domUpdates.traveler.name}!`;
+  },
 
   getDestinations: () => {
     const destinationMenu = document.querySelector('.destination-menu');
