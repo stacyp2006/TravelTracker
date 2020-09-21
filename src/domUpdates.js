@@ -139,7 +139,6 @@ let domUpdates = {
       })
     }
   }
-
 }
 
 
