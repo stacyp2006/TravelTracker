@@ -31,10 +31,11 @@ let domUpdates = {
     domUpdates.getDestinations();
     domUpdates.getTotalSpent();
     domUpdates.displayPendingTrips();
+    domUpdates.displayCurrentTrip();
   },
 
   getTraveler: () => {
-    domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
+    domUpdates.traveler = new Traveler(domUpdates.travelers[43], domUpdates.trips, domUpdates.destinations)
     domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
@@ -70,6 +71,21 @@ let domUpdates = {
       })
     }
   },
+
+  displayCurrentTrip: () => {
+    const currentTrip = document.querySelector('.current-trip');
+    const welcome = document.querySelector('.welcome');
+    domUpdates.traveler.findCurrentTrip();
+    if (domUpdates.traveler.currentTrip === undefined) {
+      welcome.innerText = `Welcome Home! Ready to Wander?`;
+    } else {
+      let trip = new Trip(domUpdates.traveler.currentTrip)
+      let name = domUpdates.destinations[trip.destinationID - 1].destination;
+      let image = domUpdates.destinations[trip.destinationID - 1].image;
+      welcome.innerText = `Welcome to ${name}`;
+      currentTrip.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='Photo here'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+    }
+  }
 
 }
 
