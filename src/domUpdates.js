@@ -37,7 +37,7 @@ let domUpdates = {
   },
 
   getTraveler: () => {
-    domUpdates.traveler = new Traveler(domUpdates.travelers[0], domUpdates.trips, domUpdates.destinations)
+    domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
     domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
@@ -86,7 +86,10 @@ let domUpdates = {
     const welcome = document.querySelector('.welcome');
     domUpdates.traveler.findCurrentTrip();
     if (domUpdates.traveler.currentTrip === undefined) {
-      welcome.innerText = `Welcome Home! Ready to Wander?`;
+      welcome.innerText =
+      `Welcome Home!
+
+      Ready to Wander?`;
     } else {
       let trip = new Trip(domUpdates.traveler.currentTrip)
       let name = domUpdates.destinations[trip.destinationID - 1].destination;
@@ -104,7 +107,7 @@ let domUpdates = {
     if (domUpdates.traveler.pastTrips.length === 0) {
       pastLabel.innerText =
       `Past Wanders
-      
+
       No past wanders to display`;
     } else {
       domUpdates.traveler.pastTrips.forEach(trip => {
