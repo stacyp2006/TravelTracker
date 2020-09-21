@@ -34,6 +34,7 @@ let domUpdates = {
 
   getTraveler: () => {
     domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
+    domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
   greetUser: () => {
@@ -51,11 +52,14 @@ let domUpdates = {
   },
 
   getTotalSpent: () => {
-    domUpdates.traveler.findAllTrips(domUpdates.trips);
     const travelTotal = document.querySelector('.travel-total');
     const userTotal = domUpdates.traveler.calculateTravelBudget(domUpdates.destinations)
     travelTotal.innerText = `$ ${userTotal}`
-  }
+  },
+
+  // displayPastTrips: () => {
+  //
+  // }
 
 }
 
