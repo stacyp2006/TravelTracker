@@ -37,7 +37,7 @@ let domUpdates = {
   },
 
   getTraveler: () => {
-    domUpdates.traveler = new Traveler(domUpdates.travelers[43], domUpdates.trips, domUpdates.destinations)
+    domUpdates.traveler = new Traveler(domUpdates.travelers[0], domUpdates.trips, domUpdates.destinations)
     domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
@@ -74,6 +74,13 @@ let domUpdates = {
     }
   },
 
+  // findTripInfo:(trip) => {
+  //   let name = domUpdates.destinations[trip.destinationID - 1].destination;
+  //   let image = domUpdates.destinations[trip.destinationID - 1].image;
+  //   let alt = domUpdates.destinations[trip.destinationID - 1].alt;
+  //   return name, image, alt
+  // },
+
   displayCurrentTrip: () => {
     const currentTrip = document.querySelector('.current-trip');
     const welcome = document.querySelector('.welcome');
@@ -95,7 +102,10 @@ let domUpdates = {
     const pastLabel = document.querySelector('.past-label');
     domUpdates.traveler.findPastTrips();
     if (domUpdates.traveler.pastTrips.length === 0) {
-      pastLabel.innerText = `Past Wanders <br> No past wanders to display`;
+      pastLabel.innerText =
+      `Past Wanders
+      
+      No past wanders to display`;
     } else {
       domUpdates.traveler.pastTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
@@ -111,7 +121,12 @@ let domUpdates = {
     const upcomingLabel = document.querySelector('.upcoming-label');
     domUpdates.traveler.findUpcomingTrips();
     if (domUpdates.traveler.upcomingTrips.length === 0) {
-      upcomingLabel.innerText = `Upcoming Wanders <br> No upcoming wanders to display <br> Ready to Wander?`;
+      upcomingLabel.innerText =
+      `Upcoming Wanders
+
+      No upcoming wanders to display.
+
+      Ready to Wander?`;
     } else {
       domUpdates.traveler.upcomingTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
