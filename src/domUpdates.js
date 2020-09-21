@@ -82,8 +82,9 @@ let domUpdates = {
       let trip = new Trip(domUpdates.traveler.currentTrip)
       let name = domUpdates.destinations[trip.destinationID - 1].destination;
       let image = domUpdates.destinations[trip.destinationID - 1].image;
+      let alt = domUpdates.destinations[trip.destinationID - 1].alt;
       welcome.innerText = `Welcome to ${name}`;
-      currentTrip.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='Photo here'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+      currentTrip.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
     }
   }
 
