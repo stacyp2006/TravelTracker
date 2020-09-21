@@ -33,6 +33,7 @@ let domUpdates = {
     domUpdates.displayPendingTrips();
     domUpdates.displayCurrentTrip();
     domUpdates.displayPastTrips();
+    domUpdates.displayUpcomingTrips();
   },
 
   getTraveler: () => {
@@ -97,11 +98,26 @@ let domUpdates = {
       pastLabel.innerText = `Past Wanders <br> No past wanders to display`;
     } else {
       domUpdates.traveler.pastTrips.forEach(trip => {
-        // let trip = new Trip(domUpdates.traveler.currentTrip)
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
         let alt = domUpdates.destinations[trip.destinationID - 1].alt;
         pastTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+      })
+    }
+  },
+
+  displayUpcomingTrips: () => {
+    const upcomingTrips = document.querySelector('.upcoming-trips');
+    const upcomingLabel = document.querySelector('.upcoming-label');
+    domUpdates.traveler.findUpcomingTrips();
+    if (domUpdates.traveler.upcomingTrips.length === 0) {
+      upcomingLabel.innerText = `Upcoming Wanders <br> No upcoming wanders to display <br> Ready to Wander?`;
+    } else {
+      domUpdates.traveler.upcomingTrips.forEach(trip => {
+        let name = domUpdates.destinations[trip.destinationID - 1].destination;
+        let image = domUpdates.destinations[trip.destinationID - 1].image;
+        let alt = domUpdates.destinations[trip.destinationID - 1].alt;
+        upcomingTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
       })
     }
   }
