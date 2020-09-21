@@ -21,20 +21,19 @@ let domUpdates = {
         domUpdates.trips = responses[1].trips;
         domUpdates.destinations = responses[2].destinations;
         domUpdates.getTraveler();
-        domUpdates.greetUser();
-        domUpdates.getDestinations();
-        console.log(domUpdates.traveler);
+        domUpdates.updateDisplay();
       })
       .catch(error => console.log(error))
   },
 
+  updateDisplay: () => {
+    domUpdates.greetUser();
+    domUpdates.getDestinations();
+  },
+  
   getTraveler: () => {
     domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
   },
-  // updateDisplay: () => {
-  //   domUpdates.greetUser();
-  //   domUpdates.getDestinations();
-  // },
 
   greetUser: () => {
     const welcomeMessage = document.querySelector('.greeting');
