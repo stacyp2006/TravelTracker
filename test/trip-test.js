@@ -28,4 +28,8 @@ describe('Trip', () => {
     trip1.calculateTripCost(destinations);
     expect(trip1.calculateTripCost(destinations)).to.equal(5819);
   })
+
+  it.only('should return a destination name', () => {
+    expect(trip1.findTripName(destinations)).to.equal('Castries, St Lucia')
+  })
 })
