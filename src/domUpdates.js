@@ -30,6 +30,7 @@ let domUpdates = {
     domUpdates.greetUser();
     domUpdates.getDestinations();
     domUpdates.getTotalSpent();
+    domUpdates.displayPendingTrips();
   },
 
   getTraveler: () => {
@@ -57,9 +58,18 @@ let domUpdates = {
     travelTotal.innerText = `$ ${userTotal}`
   },
 
-  // displayPastTrips: () => {
-  //
-  // }
+  displayPendingTrips: () => {
+    const pending = document.querySelector('.pending-trips');
+    domUpdates.traveler.findPendingTrips();
+    if (domUpdates.traveler.pendingTrips.length === 0) {
+      pending.insertAdjacentHTML('beforeend', `<h4 class="pending-list">You have no pending trips!</h4>`)
+    } else {
+      domUpdates.traveler.pendingTrips.forEach(trip => {
+        let name = domUpdates.destinations[trip.destinationID - 1].destination;
+        pending.insertAdjacentHTML('beforeend', `<h4 class="pending-list">${name}<br>${trip.date}</h4>`)
+      })
+    }
+  },
 
 }
 
