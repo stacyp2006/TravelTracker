@@ -7,9 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="map-background"
+    style="background-image: url('https://pixabay.com/get/55e3dd404a5aa414ead98c79c62e3e7c1222dfe353517949702973dc.jpg');">
+    </div>
     <h1>Wander</h1>
     <main>
-      <sidebar class="user-display">
+      <div class="user-display">
         <h2 class="greeting">Welcome, user</h2>
         <section class="pending-trips">
           <h3>Pending Wanders</h3>
@@ -18,9 +21,10 @@
           <h3>Total Spent this Year</h3>
             <h4 class="travel-total">$5000</h4>
         </section>
-      </sidebar>
-      <section>
+      </div>
+      <section class="trip-section">
         <nav class="book-trip-bar">
+          <h4>Book your next Wander!</h4>
           <select class="destination-menu" aria-label="choose destination" name="destination">
             <option value="">Choose a Destination</option>
           </select>
@@ -36,16 +40,18 @@
         <h5 class="date-error hidden">Please enter a valid date.</h5>
         <h5 class="duration-error hidden">Please enter the number of days you would like to wander.</h5>
         <h5 class="travelers-error hidden">Please enter the number of travelers in your party.</h5>
-      </section>
-      <section class="trip-section">
         <section class="current-trip">
           <h3 class="welcome">Welcome to Tokyo!</h3>
         </section>
         <section class="upcoming-trips">
           <h3 class="upcoming-label">Upcoming Wanders</h3>
+          <div class="upcoming-trip-cards">
+          </div>
         </section>
         <section class="past-trips">
           <h3 class="past-label">Past Wanders</h3>
+          <div class="past-trip-card">
+          </div>
         </section>
       </section>
     </main>

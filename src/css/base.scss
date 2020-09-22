@@ -1,102 +1,146 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: lightblue;//move this to the variables file
-;
+@import 'variables';
+@import 'mixins';
 
 html {
   height: 100vh;
 }
 
 body {
-  background: $primary-background;
+  background-image: url('https://pixabay.com/get/55e3dd404a5aa414f6d1867dda293f7a1439d7e7544c704f752f73d4914dc059_1920.jpg');
   font-family: 'Source Code Pro', monospace;
 }
 
 main {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(150px, 25%) 1fr;
   justify-content: center;
 }
 
 .hidden {
   display: none;
 }
+
 .user-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 1em;
-  border: 2px solid #000;
-  padding: 10px;
-  width: fit-content;
-  margin-bottom: 10px;
+  background-color: $primary-background;
+  @include box-construction(border-box, 1em, 2px solid #000);
+  @include common-flex-display(flex, flex-start, column, center, fit-content);
+  @include padding-margin($margin-size, $margin-size);
   height: 100%;
 }
 
 .greeting {
-  border-bottom: 1px solid
+  border-bottom: 1px solid;
 }
 
 .book-trip-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 1em;
-  border: 2px solid #000;
-  width: fit-content;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-}
-
-.trip-section {
-  display: flex;
-  flex-direction: column;
+  background-color: $primary-background;
+  @include box-construction(border-box, 1em, 2px solid #000);
+  @include common-flex-display(flex, center, row, center, auto);
+  @include padding-margin($margin-size, $margin-size);
+  margin-left: $margin-size;
 }
 
 .current-trip {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 1em;
-  border: 2px solid #000;
-  padding: 10px;
-  width: fit-content;
-  margin-bottom: 10px;
+  background-color: $primary-background;
+  @include box-construction(border-box, 1em, 2px solid #000);
+  @include common-flex-display(flex, center, column, center, auto);
+  @include padding-margin($margin-size, $margin-size);
+  margin-left: $margin-size;
+}
+
+.current-trip-picture {
+  width: 50%;
 }
 
 .trip-picture {
-  width: 90%;
+  width: 100%;
 }
 
 .past-trips {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 1em;
-  border: 2px solid #000;
-  padding: 10px;
-  width: fit-content;
-  margin-bottom: 10px;
+  background-color: $primary-background;
+  @include box-construction(border-box, 1em, 2px solid #000);
+  @include common-flex-display(flex, center, column, center, auto);
+  @include padding-margin($margin-size, $margin-size);
+  margin-left: $margin-size;
+}
+
+.past-trip-card {
+  @include basic-flex-display(flex, row);
+  @include center(center, center);
+  flex-wrap: wrap;
+}
+
+.trip-card {
+  @include box-construction(border-box, 1em, 2px solid #000)
+  padding: $margin-size;
+  margin: $margin-size;
+  width: 300px;
 }
 
 .upcoming-trips {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 1em;
-  border: 2px solid #000;
-  padding: 10px;
-  width: fit-content;
-  margin-bottom: 10px;
+  background-color: $primary-background;
+  @include box-construction(border-box, 1em, 2px solid #000);
+  @include common-flex-display(flex, center, column, center, auto);
+  @include padding-margin($margin-size, $margin-size);
+  margin-left: $margin-size;
+}
+
+.upcoming-trip-cards {
+  @include basic-flex-display(flex, row);
+  @include center(center, center);
+  flex-wrap: wrap;
+}
+
+//------Media Queries------//
+
+@media(max-width: 1060px) {
+
+  main {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: $margin-size;
+  }
+
+  .user-display {
+    width: 99%;
+    margin: $margin-size;
+    height: auto;
+  }
+
+  .book-trip-bar {
+    margin-top: $margin-size;
+  }
+}
+
+@media(max-width: 895px) {
+
+  main {
+    place-items: center;
+  }
+
+  .trip-section {
+    @include basic-flex-display(flex, column);
+    @include center(center, center);
+    align-items: center;
+  }
+
+  .user-display, .book-trip-bar, .current-trip, .upcoming-trips, .past-trips {
+    width: 60%;
+  }
+
+  .book-trip-bar {
+    @include basic-flex-display(flex, column);
+  }
+}
+
+@media(max-width: 530px) {
+
+  .upcoming-trips, .past-trips {
+    border: none;
+  }
+
+  .destination-menu {
+    width: 200px;
+  }
 
 }

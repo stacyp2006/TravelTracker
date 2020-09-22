@@ -1,0 +1,30 @@
+//---Mixins---//
+
+@mixin box-construction($boxsize, $radius, $border) {
+  box-sizing: $boxsize;
+  border-radius: $radius;
+  border: $border;
+}
+
+@mixin common-flex-display($display, $justify, $direction, $align, $width) {
+  display: $display;
+  justify-content: $justify;
+  flex-direction: $direction;
+  align-items: $align;
+  width: $width;
+}
+
+@mixin padding-margin($padding, $margin) {
+  padding: $padding;
+  margin-bottom: $margin;
+}
+
+@mixin basic-flex-display($display, $direction) {
+  display: $display;
+  flex-direction: $direction;
+}
+
+@mixin center($justify, $place) {
+  justify-content: $justify;
+  place-items: $place;
+}
