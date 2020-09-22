@@ -177,7 +177,7 @@ let domUpdates = {
     if (validated) {
       let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
       let newTripCost = domUpdates.calculateTripCost(newTrip, domUpdates.destinations);
-      requestedCost.innerText = `This trip is estimated to cost $${newTripCost}`
+      requestedCost.innerText = `This trip is estimated to cost $${newTripCost}. Click submit to book this Wander.`
       requestedCost.classList.remove('hidden');
     }
   },
