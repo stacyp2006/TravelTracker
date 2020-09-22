@@ -1,3 +1,5 @@
+@import 'variables';
+
 html {
   height: 100vh;
 }
@@ -127,17 +129,55 @@ main {
 
 @media(max-width: 1060px) {
 
-  .main {
+  main {
     display: grid;
     grid-template-columns: auto;
+    grid-gap: 10px;
   }
 
   .user-display {
-    width: auto;
+    width: 99%;
     margin: 10px;
+    height: auto;
   }
 
   .book-trip-bar {
-    margin: 10px;
+    margin-top: 10px;
   }
+}
+
+@media(max-width: 895px) {
+
+  main {
+    place-items: center;
+  }
+
+  .trip-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+  }
+
+  .user-display, .book-trip-bar, .current-trip, .upcoming-trips, .past-trips {
+    width: 60%;
+  }
+
+  .book-trip-bar {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media(max-width: 530px) {
+
+  .upcoming-trips, .past-trips {
+    border: none;
+  }
+
+  .destination-menu {
+    width: 200px;
+  }
+
 }

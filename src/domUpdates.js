@@ -43,7 +43,7 @@ let domUpdates = {
   },
 
   getTraveler: () => {
-    domUpdates.traveler = new Traveler(domUpdates.travelers[47], domUpdates.trips, domUpdates.destinations)
+    domUpdates.traveler = new Traveler(domUpdates.travelers[43], domUpdates.trips, domUpdates.destinations)
     domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
