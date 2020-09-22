@@ -1,6 +1,12 @@
+import moment from 'moment'
 import Traveler from '../src/traveler.js'
 import Trip from '../src/trip.js'
 import Destination from '../src/destination.js'
+
+const destinationMenu = document.querySelector('.destination-menu')
+const startDate = document.querySelector('.start-date-box');
+const duration = document.querySelector('.duration-box');
+const travelerNum = document.querySelector('.traveler-count');
 
 let domUpdates = {
 
@@ -47,7 +53,6 @@ let domUpdates = {
   },
 
   getDestinations: () => {
-    const destinationMenu = document.querySelector('.destination-menu');
     if (domUpdates.destinations.length > 0) {
       domUpdates.destinations.forEach(destination => {
         destinationMenu.insertAdjacentHTML('beforeend', `<option value="${destination.id}">${destination.destination}</option>`)
@@ -138,6 +143,93 @@ let domUpdates = {
         upcomingTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
       })
     }
+  },
+
+  validateInput: () => {
+    let validated = true;
+    const destinationError = document.querySelector('.destination-error')
+    const startDateError = document.querySelector('.date-error');
+    const durationError = document.querySelector('.duration-error');
+    const travelerNumError = document.querySelector('.travelers-error');
+    const requestedCost = document.querySelector('.new-trip-cost');
+    requestedCost.classList.add('hidden');
+    destinationError.classList.add('hidden');
+    startDateError.classList.add('hidden');
+    durationError.classList.add('hidden');
+    travelerNumError.classList.add('hidden');
+
+    if (!destinationMenu.value) {
+      destinationError.classList.remove('hidden');
+      validated = false;
+    }
+    if (!moment(startDate.value)._isValid || moment(startDate.value).isBefore(moment(Date.now()))) {
+      startDateError.classList.remove('hidden');
+      validated = false;
+    }
+    if (!duration.value || isNaN(duration.value)) {
+      durationError.classList.remove('hidden');
+      validated = false;
+    }
+    if (!travelerNum.value || isNaN(travelerNum.value)) {
+      travelerNumError.classList.remove('hidden');
+      validated = false;
+    }
+    if (validated) {
+      let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
+      let newTripCost = domUpdates.calculateTripCost(newTrip, domUpdates.destinations);
+      requestedCost.innerText = `This trip is estimated to cost $${newTripCost}. Click submit to book this Wander.`
+      requestedCost.classList.remove('hidden');
+    }
+  },
+
+  buildTrip: (destination, date, duration, travelers) => {
+    let newTrip = {
+      id: Date.now(),
+      userID: domUpdates.traveler.id,
+      destinationID: parseInt(destination),
+      travelers: parseInt(travelers),
+      date: moment(date).format('YYYY/MM/DD'),
+      duration: parseInt(duration),
+      status: "pending",
+      suggestedActivities: []
+    }
+    return newTrip
+  },
+
+  calculateTripCost: (newTrip, destinations) => {
+    let tripCost = domUpdates.destinations.reduce((cost, destination) => {
+      if (newTrip.destinationID === destination.id) {
+        cost = (1.1 * (newTrip.travelers * ((newTrip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson)));
+      }
+      return cost
+    }, 0)
+    return parseFloat(tripCost.toFixed(0));
+  },
+
+  resetForm: () => {
+    destinationMenu.value = '';
+    startDate.value = '';
+    duration.value = '';
+    travelerNum.value = '';
+  },
+
+  bookNewTrip: () => {
+    const bookingMessage = document.querySelector('.booking-message');
+    let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
+    bookingMessage.classList.remove('hidden');
+    fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips',
+    {
+      method: 'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newTrip),
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+  },
+
+  submitAction: () => {
+    domUpdates.bookNewTrip();
+    domUpdates.resetForm();
   }
 }
 
