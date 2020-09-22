@@ -20,12 +20,6 @@ class Trip {
     }, 0)
     return parseFloat(tripCost.toFixed(0));
   }
-
-  findTripName(destinations) {
-    let tripName = destinations.find(location => this.destinationID === location.id
-    )
-    return tripName.destination
-  }
 }
 
 export default Trip

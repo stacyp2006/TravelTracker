@@ -17,6 +17,9 @@ main {
   justify-content: center;
 }
 
+.hidden {
+  display: none;
+}
 .user-display {
   display: flex;
   flex-direction: column;
