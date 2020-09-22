@@ -9,11 +9,6 @@ import domUpdates from '../src/domUpdates.js'
 const cost = document.querySelector('.estimate-cost');
 const submit = document.querySelector('.submit-btn');
 
-// const bookTripConditionals = (event) => {
-//   if (event.target.classList.contains('estimate-cost')) {
-//     domUpdates.trip.calculateTripCost(event);
-//   }
-// }
 function validateInput() {
   let validated = true;
   const destinationMenu = document.querySelector('.destination-menu')
@@ -50,10 +45,17 @@ function validateInput() {
   }
 }
 
-
-
-
-
+function buildTrip(destination, date, duration, travelers) {
+  let newTrip = {
+    id: Date.now(),
+    userID: domUpdates.traveler.id,
+    destinationID: parseInt(destination),
+    travelers: parseInt(travelers),
+    date: moment(date).format('YYYY/MM/DD'),
+    duration: parseInt(duration),
+    status: "pending"
+  }
+}
 
 
 window.onload = domUpdates.getTravelData();
