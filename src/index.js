@@ -32,11 +32,11 @@ function validateInput() {
     startDateError.classList.remove('hidden');
     validated = false;
   }
-  if (!duration.value || typeof(+duration.value) !== 'number') {
+  if (!duration.value || isNaN(duration.value)) {
     durationError.classList.remove('hidden');
     validated = false;
   }
-  if (!travelerNum.value || typeof(+travelerNum.value) !== 'number') {
+  if (!travelerNum.value || isNaN(travelerNum.value)) {
     travelerNumError.classList.remove('hidden');
     validated = false;
   }
