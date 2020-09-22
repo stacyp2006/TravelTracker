@@ -190,7 +190,8 @@ let domUpdates = {
       travelers: parseInt(travelers),
       date: moment(date).format('YYYY/MM/DD'),
       duration: parseInt(duration),
-      status: "pending"
+      status: "pending",
+      suggestedActivities: []
     }
     return newTrip
   },
