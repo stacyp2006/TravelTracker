@@ -101,12 +101,12 @@ let domUpdates = {
       let image = domUpdates.destinations[trip.destinationID - 1].image;
       let alt = domUpdates.destinations[trip.destinationID - 1].alt;
       welcome.innerText = `Welcome to ${name}`;
-      currentTrip.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+      currentTrip.insertAdjacentHTML('beforeend', `<img class='current-trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
     }
   },
 
   displayPastTrips: () => {
-    const pastTrips = document.querySelector('.past-trips');
+    const pastTrips = document.querySelector('.past-trip-card');
     const pastLabel = document.querySelector('.past-label');
     domUpdates.traveler.findPastTrips();
     if (domUpdates.traveler.pastTrips.length === 0) {
@@ -119,13 +119,13 @@ let domUpdates = {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
         let alt = domUpdates.destinations[trip.destinationID - 1].alt;
-        pastTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+        pastTrips.insertAdjacentHTML('beforeend', `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
       })
     }
   },
 
   displayUpcomingTrips: () => {
-    const upcomingTrips = document.querySelector('.upcoming-trips');
+    const upcomingTrips = document.querySelector('.upcoming-trip-cards');
     const upcomingLabel = document.querySelector('.upcoming-label');
     domUpdates.traveler.findUpcomingTrips();
     if (domUpdates.traveler.upcomingTrips.length === 0) {
@@ -140,7 +140,7 @@ let domUpdates = {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
         let alt = domUpdates.destinations[trip.destinationID - 1].alt;
-        upcomingTrips.insertAdjacentHTML('beforeend', `<img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+        upcomingTrips.insertAdjacentHTML('beforeend', `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
       })
     }
   },
