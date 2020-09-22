@@ -10,4 +10,4 @@ const submit = document.querySelector('.submit-btn');
 
 window.onload = domUpdates.getTravelData();
 cost.addEventListener('click', domUpdates.validateInput);
-submit.addEventListener('click', domUpdates.bookNewTrip);
+submit.addEventListener('click', domUpdates.submitAction);

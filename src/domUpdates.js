@@ -206,13 +206,25 @@ let domUpdates = {
     return parseFloat(tripCost.toFixed(0));
   },
 
+  resetForm: () => {
+    const destinationMenu = document.querySelector('.destination-menu')
+    const startDate = document.querySelector('.start-date-box');
+    const duration = document.querySelector('.duration-box');
+    const travelerNum = document.querySelector('.traveler-count');
+    destinationMenu.value = '';
+    startDate.value = '';
+    duration.value = '';
+    travelerNum.value = '';
+  },
+
   bookNewTrip: () => {
     const destinationMenu = document.querySelector('.destination-menu')
     const startDate = document.querySelector('.start-date-box');
     const duration = document.querySelector('.duration-box');
     const travelerNum = document.querySelector('.traveler-count');
+    const bookingMessage = document.querySelector('.booking-message');
     let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
-    console.log(newTrip);
+    bookingMessage.classList.remove('hidden');
     fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips',
     {
       method: 'POST',
@@ -221,6 +233,11 @@ let domUpdates = {
     })
     .then(response => console.log(response))
     .catch(error => console.log(error))
+  },
+
+  submitAction: () => {
+    domUpdates.bookNewTrip();
+    domUpdates.resetForm();
   }
 }
 
