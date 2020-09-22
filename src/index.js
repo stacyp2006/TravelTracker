@@ -1,11 +1,9 @@
 import './css/base.scss';
 import moment from 'moment';
+import Trip from '../src/trip.js'
 
 import domUpdates from '../src/domUpdates.js'
 
-// const startDate = document.querySelector('.start-date-box');
-// const duration = document.querySelector('.duration-box');
-// const travelerNum = document.querySelector('.traveler-count');
 const cost = document.querySelector('.estimate-cost');
 const submit = document.querySelector('.submit-btn');
 
@@ -19,6 +17,8 @@ function validateInput() {
   const startDateError = document.querySelector('.date-error');
   const durationError = document.querySelector('.duration-error');
   const travelerNumError = document.querySelector('.travelers-error');
+  const requestedCost = document.querySelector('.new-trip-cost');
+  requestedCost.classList.add('hidden');
   destinationError.classList.add('hidden');
   startDateError.classList.add('hidden');
   durationError.classList.add('hidden');
@@ -41,7 +41,10 @@ function validateInput() {
     validated = false;
   }
   if (validated) {
-    buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value)
+    let newTrip = buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
+    let newTripCost = calculateTripCost(newTrip, domUpdates.destinations);
+    requestedCost.innerText = `This trip is estimated to cost $${newTripCost}`
+    requestedCost.classList.remove('hidden');
   }
 }
 
@@ -55,6 +58,17 @@ function buildTrip(destination, date, duration, travelers) {
     duration: parseInt(duration),
     status: "pending"
   }
+  return newTrip
+}
+
+function calculateTripCost(newTrip, destinations) {
+  let tripCost = domUpdates.destinations.reduce((cost, destination) => {
+    if (newTrip.destinationID === destination.id) {
+      cost = (1.1 * (newTrip.travelers * ((newTrip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson)));
+    }
+    return cost
+  }, 0)
+  return parseFloat(tripCost.toFixed(0));
 }
 
 
