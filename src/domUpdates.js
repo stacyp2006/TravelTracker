@@ -3,6 +3,11 @@ import Traveler from '../src/traveler.js'
 import Trip from '../src/trip.js'
 import Destination from '../src/destination.js'
 
+const destinationMenu = document.querySelector('.destination-menu')
+const startDate = document.querySelector('.start-date-box');
+const duration = document.querySelector('.duration-box');
+const travelerNum = document.querySelector('.traveler-count');
+
 let domUpdates = {
 
   travelers: [{}],
@@ -48,7 +53,6 @@ let domUpdates = {
   },
 
   getDestinations: () => {
-    const destinationMenu = document.querySelector('.destination-menu');
     if (domUpdates.destinations.length > 0) {
       domUpdates.destinations.forEach(destination => {
         destinationMenu.insertAdjacentHTML('beforeend', `<option value="${destination.id}">${destination.destination}</option>`)
@@ -143,10 +147,6 @@ let domUpdates = {
 
   validateInput: () => {
     let validated = true;
-    const destinationMenu = document.querySelector('.destination-menu')
-    const startDate = document.querySelector('.start-date-box');
-    const duration = document.querySelector('.duration-box');
-    const travelerNum = document.querySelector('.traveler-count');
     const destinationError = document.querySelector('.destination-error')
     const startDateError = document.querySelector('.date-error');
     const durationError = document.querySelector('.duration-error');
@@ -207,10 +207,6 @@ let domUpdates = {
   },
 
   resetForm: () => {
-    const destinationMenu = document.querySelector('.destination-menu')
-    const startDate = document.querySelector('.start-date-box');
-    const duration = document.querySelector('.duration-box');
-    const travelerNum = document.querySelector('.traveler-count');
     destinationMenu.value = '';
     startDate.value = '';
     duration.value = '';
@@ -218,10 +214,6 @@ let domUpdates = {
   },
 
   bookNewTrip: () => {
-    const destinationMenu = document.querySelector('.destination-menu')
-    const startDate = document.querySelector('.start-date-box');
-    const duration = document.querySelector('.duration-box');
-    const travelerNum = document.querySelector('.traveler-count');
     const bookingMessage = document.querySelector('.booking-message');
     let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
     bookingMessage.classList.remove('hidden');
