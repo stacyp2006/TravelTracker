@@ -7,6 +7,12 @@ const destinationMenu = document.querySelector('.destination-menu')
 const startDate = document.querySelector('.start-date-box');
 const duration = document.querySelector('.duration-box');
 const travelerNum = document.querySelector('.traveler-count');
+const loginForm = document.querySelector('.login-form');
+const username = document.querySelector('.username');
+const password = document.querySelector('.password');
+const pending = document.querySelector('.pending-trips');
+const trips = document.querySelector('.trip-section');
+const budget = document.querySelector('.travel-budget');
 
 let domUpdates = {
 
@@ -26,7 +32,6 @@ let domUpdates = {
         domUpdates.travelers = responses[0].travelers;
         domUpdates.trips = responses[1].trips;
         domUpdates.destinations = responses[2].destinations;
-        domUpdates.getTraveler();
         domUpdates.updateDisplay();
       })
       .catch(error => console.log(error))
@@ -35,6 +40,7 @@ let domUpdates = {
   updateDisplay: () => {
     domUpdates.greetUser();
     domUpdates.getDestinations();
+    domUpdates.getTrips();
     domUpdates.getTotalSpent();
     domUpdates.displayPendingTrips();
     domUpdates.displayCurrentTrip();
@@ -42,8 +48,7 @@ let domUpdates = {
     domUpdates.displayUpcomingTrips();
   },
 
-  getTraveler: () => {
-    domUpdates.traveler = new Traveler(domUpdates.travelers[43], domUpdates.trips, domUpdates.destinations)
+  getTrips: () => {
     domUpdates.traveler.findAllTrips(domUpdates.trips);
   },
 
@@ -67,7 +72,6 @@ let domUpdates = {
   },
 
   displayPendingTrips: () => {
-    const pending = document.querySelector('.pending-trips');
     domUpdates.traveler.findPendingTrips();
     if (domUpdates.traveler.pendingTrips.length === 0) {
       pending.insertAdjacentHTML('beforeend', `<h4 class="pending-list">You have no pending trips!</h4>`)
@@ -78,13 +82,6 @@ let domUpdates = {
       })
     }
   },
-
-  // findTripInfo:(trip) => {
-  //   let name = domUpdates.destinations[trip.destinationID - 1].destination;
-  //   let image = domUpdates.destinations[trip.destinationID - 1].image;
-  //   let alt = domUpdates.destinations[trip.destinationID - 1].alt;
-  //   return name, image, alt
-  // },
 
   displayCurrentTrip: () => {
     const currentTrip = document.querySelector('.current-trip');
@@ -230,6 +227,24 @@ let domUpdates = {
   submitAction: () => {
     domUpdates.bookNewTrip();
     domUpdates.resetForm();
+  },
+
+  validateLogin: () => {
+    const loginError = document.querySelector('.login-error');
+    let usernameID = username.value.split('traveler')[1];
+    if (isNaN(usernameID) || password.value !== 'travel2020') {
+      loginError.classList.remove('hidden');
+    } else {
+      domUpdates.getTravelData()
+      fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${usernameID}`)
+        .then(response => response.json())
+        .then(data => domUpdates.traveler = new Traveler(data, domUpdates.trips, domUpdates.destinations))
+        .catch(err => console.log('err', err))
+        loginForm.classList.add('hidden');
+        pending.classList.remove('hidden');
+        trips.classList.remove('hidden');
+        budget.classList.remove('hidden');
+    }
   }
 }
 
