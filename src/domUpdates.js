@@ -176,6 +176,7 @@ let domUpdates = {
       let newTripCost = domUpdates.calculateTripCost(newTrip, domUpdates.destinations);
       requestedCost.innerText = `This trip is estimated to cost $${newTripCost}. Click submit to book this Wander.`
       requestedCost.classList.remove('hidden');
+      return true;
     }
   },
 
@@ -212,16 +213,21 @@ let domUpdates = {
 
   bookNewTrip: () => {
     const bookingMessage = document.querySelector('.booking-message');
-    let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
-    bookingMessage.classList.remove('hidden');
-    fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips',
-    {
-      method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newTrip),
-    })
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
+    const bookingError = document.querySelector('.booking-error');
+    if (domUpdates.validateInput() === true) {
+      let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
+      bookingMessage.classList.remove('hidden');
+      fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips',
+      {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newTrip),
+      })
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+    } else {
+      bookingError.classList.remove('hidden');
+    }
   },
 
   submitAction: () => {
