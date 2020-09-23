@@ -1,6 +1,4 @@
 import './css/base.scss';
-import moment from 'moment';
-import Trip from '../src/trip.js'
 
 import domUpdates from '../src/domUpdates.js'
 

@@ -1,7 +1,6 @@
 import moment from 'moment'
 import Traveler from '../src/traveler.js'
 import Trip from '../src/trip.js'
-import Destination from '../src/destination.js'
 
 const destinationMenu = document.querySelector('.destination-menu')
 const startDate = document.querySelector('.start-date-box');
@@ -74,11 +73,13 @@ let domUpdates = {
   displayPendingTrips: () => {
     domUpdates.traveler.findPendingTrips();
     if (domUpdates.traveler.pendingTrips.length === 0) {
-      pending.insertAdjacentHTML('beforeend', `<h4 class="pending-list">You have no pending trips!</h4>`)
+      pending.insertAdjacentHTML('beforeend',
+        `<h4 class="pending-list">You have no pending trips!</h4>`)
     } else {
       domUpdates.traveler.pendingTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
-        pending.insertAdjacentHTML('beforeend', `<h4 class="pending-list">${name}<br>${trip.date}</h4>`)
+        pending.insertAdjacentHTML('beforeend',
+          `<h4 class="pending-list">${name}<br>${trip.date}</h4>`)
       })
     }
   },
@@ -98,7 +99,8 @@ let domUpdates = {
       let image = domUpdates.destinations[trip.destinationID - 1].image;
       let alt = domUpdates.destinations[trip.destinationID - 1].alt;
       welcome.innerText = `Welcome to ${name}`;
-      currentTrip.insertAdjacentHTML('beforeend', `<img class='current-trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
+      currentTrip.insertAdjacentHTML('beforeend',
+        `<img class='current-trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">,/br>${name}<br>Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4>`)
     }
   },
 
@@ -116,7 +118,8 @@ let domUpdates = {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
         let alt = domUpdates.destinations[trip.destinationID - 1].alt;
-        pastTrips.insertAdjacentHTML('beforeend', `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
+        pastTrips.insertAdjacentHTML('beforeend',
+          `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><h4 class="past-display"><br>${name}<br>Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
       })
     }
   },
@@ -137,7 +140,8 @@ let domUpdates = {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
         let alt = domUpdates.destinations[trip.destinationID - 1].alt;
-        upcomingTrips.insertAdjacentHTML('beforeend', `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="current-display">Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
+        upcomingTrips.insertAdjacentHTML('beforeend',
+          `<div class="trip-card"><img class='trip-picture' src='${image}' alt='${alt}'><br><h4 class="upcoming-display"><br>${name}<br>Date: ${trip.date}<br>Duration: ${trip.duration} days<br>Traveling Party: ${trip.travelers} people</h4></div>`)
       })
     }
   },
@@ -188,13 +192,13 @@ let domUpdates = {
       travelers: parseInt(travelers),
       date: moment(date).format('YYYY/MM/DD'),
       duration: parseInt(duration),
-      status: "pending",
+      status: 'pending',
       suggestedActivities: []
     }
     return newTrip
   },
 
-  calculateTripCost: (newTrip, destinations) => {
+  calculateTripCost: (newTrip) => {
     let tripCost = domUpdates.destinations.reduce((cost, destination) => {
       if (newTrip.destinationID === destination.id) {
         cost = (1.1 * (newTrip.travelers * ((newTrip.duration * destination.estimatedLodgingCostPerDay) + destination.estimatedFlightCostPerPerson)));
@@ -218,13 +222,14 @@ let domUpdates = {
       let newTrip = domUpdates.buildTrip(destinationMenu.value, startDate.value, duration.value, travelerNum.value);
       bookingMessage.classList.remove('hidden');
       fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips',
-      {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newTrip),
-      })
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
+        {
+          method: 'POST',
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(newTrip),
+        })
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+      domUpdates.getTravelData();
     } else {
       bookingError.classList.remove('hidden');
     }
@@ -246,10 +251,10 @@ let domUpdates = {
         .then(response => response.json())
         .then(data => domUpdates.traveler = new Traveler(data, domUpdates.trips, domUpdates.destinations))
         .catch(err => console.log('err', err))
-        loginForm.classList.add('hidden');
-        pending.classList.remove('hidden');
-        trips.classList.remove('hidden');
-        budget.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+      pending.classList.remove('hidden');
+      trips.classList.remove('hidden');
+      budget.classList.remove('hidden');
     }
   }
 }
