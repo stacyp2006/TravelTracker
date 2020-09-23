@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 class Traveler {
-  constructor(travelerData, tripData, destinations) {
+  constructor(travelerData) {
     this.id = travelerData.id;
     this.name = travelerData.name;
     this.travelerType = travelerData.travelerType;
