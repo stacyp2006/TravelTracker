@@ -192,7 +192,7 @@ let domUpdates = {
       travelers: parseInt(travelers),
       date: moment(date).format('YYYY/MM/DD'),
       duration: parseInt(duration),
-      status: "pending",
+      status: 'pending',
       suggestedActivities: []
     }
     return newTrip
@@ -229,6 +229,7 @@ let domUpdates = {
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
+      domUpdates.getTravelData();
     } else {
       bookingError.classList.remove('hidden');
     }
