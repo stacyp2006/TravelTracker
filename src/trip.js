@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 class Trip {
   constructor(tripData) {
     this.id = tripData.id;
