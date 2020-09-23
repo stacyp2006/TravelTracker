@@ -13,17 +13,24 @@
     <h1>Wander</h1>
     <main>
       <div class="user-display">
-        <h2 class="greeting">Welcome, user</h2>
-        <section class="pending-trips">
+        <h2 class="greeting">Welcome, Wanderer</h2>
+        <form class="login-form">
+          <h3>Login Here</h3>
+          <input class="username" aria-label="username-input" type="text" name="username" value="" placeholder="Enter Username">
+          <input class="password" aria-label="password-input" type="password" name="password" value="" placeholder="Enter Password">
+          <button class="login-button" aria-label="login-button" type="button" name="login">Login</button>
+          <h5 class="login-error hidden">Please enter username and password in correct format.</h5>
+        </form>
+        <section class="pending-trips hidden">
           <h3>Pending Wanders</h3>
         </section>
-        <section class="travel-budget">
+        <section class="travel-budget hidden">
           <h3>Total Spent this Year</h3>
             <h4 class="travel-total">$5000</h4>
         </section>
       </div>
-      <section class="trip-section">
-        <nav class="book-trip-bar">
+      <section class="trip-section hidden">
+        <form class="book-trip-bar">
           <h4>Book your next Wander!</h4>
           <select class="destination-menu" aria-label="choose destination" name="destination">
             <option value="">Choose a Destination</option>
@@ -32,14 +39,15 @@
           <input class="duration-box" aria-label="length of trip" type="number" min="1" name="duration" value="" placeholder="Length of Trip in Days">
           <input class="traveler-count" aria-label="number of travelers" type="number" min="1" name="party" value="" placeholder="# of Travelers">
           <button class="estimate-cost" aria-label="estimate cost" type="button" name="cost">Cost</button>
-          <button class="submit-btn" aria-label="submit" type="button" name="submit">Submit</button>
-        </nav>
-        <h5 class="booking-message hidden">Thanks for booking your next Wander! You should receive confirmation from your Wander agent within 24hrs.</h5>
-        <h5 class="new-trip-cost hidden">This trip is estimated to cost</h5>
-        <h5 class="destination-error hidden">Please select a destination.</h5>
-        <h5 class="date-error hidden">Please enter a valid date.</h5>
-        <h5 class="duration-error hidden">Please enter the number of days you would like to wander.</h5>
-        <h5 class="travelers-error hidden">Please enter the number of travelers in your party.</h5>
+          <button class="submit-btn" aria-label="submit" type="button" name="submit">Book Now!</button>
+          <h5 class="booking-message hidden">Thanks for booking your next Wander! You should receive confirmation from your Wander agent within 24hrs.</h5>
+          <h5 class="booking-error hidden">You are missing necessary information. Try again.</h5>
+          <h5 class="new-trip-cost hidden">This trip is estimated to cost</h5>
+          <h5 class="destination-error hidden">Please select a destination.</h5>
+          <h5 class="date-error hidden">Please enter a valid date.</h5>
+          <h5 class="duration-error hidden">Please enter the number of days you would like to wander.</h5>
+          <h5 class="travelers-error hidden">Please enter the number of travelers in your party.</h5>
+      </form>
         <section class="current-trip">
           <h3 class="welcome">Welcome to Tokyo!</h3>
         </section>
