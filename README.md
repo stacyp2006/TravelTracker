@@ -26,7 +26,6 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 - I still need to work on the architecture of my code. I need more practice on breaking down my code into separate files so it is more readable and more reliant on the principles of OOP.
 - While my CSS skills have improved, design is not my strong suit and I would like to continue improving so the UI/UX is even better.
 
-## Wander
 
 ## Future Improvements
 
