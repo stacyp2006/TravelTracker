@@ -76,10 +76,12 @@ let domUpdates = {
       pending.insertAdjacentHTML('beforeend',
         `<h4 class="pending-list">You have no pending trips!</h4>`)
     } else {
+      pending.innerHTML = '';
       domUpdates.traveler.pendingTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
-        pending.insertAdjacentHTML('beforeend',
-          `<h4 class="pending-list">${name}<br>${trip.date}</h4>`)
+          pending.insertAdjacentHTML('beforeend',
+          `<h3>Pending Wanders</h3>
+          <h4 class="pending-list">${name}<br>${trip.date}</h4>`)
       })
     }
   },
@@ -94,6 +96,7 @@ let domUpdates = {
 
       Ready to Wander?`;
     } else {
+      currentTrip.innerHTML = '';
       let trip = new Trip(domUpdates.traveler.currentTrip)
       let name = domUpdates.destinations[trip.destinationID - 1].destination;
       let image = domUpdates.destinations[trip.destinationID - 1].image;
@@ -114,6 +117,7 @@ let domUpdates = {
 
       No past wanders to display`;
     } else {
+      pastTrips.innerHTML = '';
       domUpdates.traveler.pastTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
@@ -136,6 +140,7 @@ let domUpdates = {
 
       Ready to Wander?`;
     } else {
+      upcomingTrips.innerHTML = '';
       domUpdates.traveler.upcomingTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
         let image = domUpdates.destinations[trip.destinationID - 1].image;
@@ -228,8 +233,8 @@ let domUpdates = {
           body: JSON.stringify(newTrip),
         })
         .then(response => console.log(response))
+        .then(data => domUpdates.getTravelData())
         .catch(error => console.log(error))
-      domUpdates.getTravelData();
     } else {
       bookingError.classList.remove('hidden');
     }
