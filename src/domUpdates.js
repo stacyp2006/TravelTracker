@@ -71,17 +71,18 @@ let domUpdates = {
   },
 
   displayPendingTrips: () => {
+    const pendingLabel = document.querySelector('.pending-label')
     domUpdates.traveler.findPendingTrips();
     if (domUpdates.traveler.pendingTrips.length === 0) {
       pending.insertAdjacentHTML('beforeend',
         `<h4 class="pending-list">You have no pending trips!</h4>`)
     } else {
       pending.innerHTML = '';
+      pending.innerText = `Pending Trips`;
       domUpdates.traveler.pendingTrips.forEach(trip => {
         let name = domUpdates.destinations[trip.destinationID - 1].destination;
           pending.insertAdjacentHTML('beforeend',
-          `<h3>Pending Wanders</h3>
-          <h4 class="pending-list">${name}<br>${trip.date}</h4>`)
+          `<h4 class="pending-list">${name}<br>${trip.date}</h4>`)
       })
     }
   },

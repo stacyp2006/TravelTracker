@@ -63,7 +63,7 @@ class Traveler {
       total += tripCost
       return total;
     }, 0)
-    return totalCost.toFixed(0)
+    return parseFloat(totalCost.toFixed(0))
   }
 
 }

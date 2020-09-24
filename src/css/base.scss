@@ -6,7 +6,8 @@ html {
 }
 
 body {
-  background-image: url('https://pixabay.com/get/55e3dd404a5aa414f6d1867dda293f7a1439d7e7544c704f752f73d4914dc059_1920.jpg');
+  background-color: $primary-background;
+  background-image: url('../images/globe-3383088_1920.jpg');
   font-family: 'Source Code Pro', monospace;
 }
 
@@ -110,6 +111,10 @@ main {
   .book-trip-bar {
     margin-top: $margin-size;
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
 @media(max-width: 895px) {
@@ -131,6 +136,10 @@ main {
   .book-trip-bar {
     @include basic-flex-display(flex, column);
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
 @media(max-width: 530px) {
@@ -141,6 +150,10 @@ main {
 
   .destination-menu {
     width: 200px;
+  }
+
+  .hidden {
+    display: none;
   }
 
 }
